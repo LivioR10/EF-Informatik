@@ -14,5 +14,8 @@
 > - Chemie
 
 
+![Quadriken](./images/Quadriken-7.svg.webp)
 
-![Quadriken](./Bilder/Quadriken-7.svg.webp)
+```py
+print('Hello World')
+```
