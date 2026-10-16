@@ -14,4 +14,4 @@
 > - Chemie
 
 
-![Quadriken](./images/Quadriken-7.svg.webp)
+![Quadriken](/images/Quadriken-7.svg.webp)
