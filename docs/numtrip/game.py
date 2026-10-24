@@ -4,9 +4,19 @@ spielfeldliste = [
     [4, 2, 2, 2, 2],
     [4, 8, 8, 2, 4],
     [2, 2, 8, 8, 8],
-    [8, 8, 2, 8, 2],
-    [4, 16, 16, 8, 4]
+    [32, 8, 2, 64, 2],
+    [4, 128, 16, 8, 4]
 ]
+farben ={
+    2: "\033[42m",
+    4: "\033[105m",
+    8: "\033[45m",
+    16: "\033[41m",
+    32: "\033[46m",
+    64: "\033[44m",
+    128: "\033[48;5;17m",
+    }
+reset = "\033[0m"
 
 def liste_machen():
     print(4*" ", end="")
@@ -23,10 +33,11 @@ def liste_machen():
             x=5
             l_grösse = len(str(spielfeldliste[i][j]))
             string = str(spielfeldliste[i][j])
+            farbe= spielfeldliste[i][j]
             if l_grösse == 3 or l_grösse == 1:
-                print("|" + ((x-l_grösse)//2)*" " + string + ((x-l_grösse)//2)*" ", end="")
+                print("|" + farben[farbe] + ((x-l_grösse)//2)*" " + string + ((x-l_grösse)//2)*" " + reset, end="")
             else:
-                print("|" + 2*" " + string + " ", end="")
+                print("|" + farben[farbe] + 2*" " + string + " " + reset , end="")
         print("|")
     print(4*" ", end="")
     for k in range (31):
