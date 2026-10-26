@@ -32,12 +32,11 @@ def liste_machen():
         for j in range(5):
             x=5
             l_grösse = len(str(spielfeldliste[i][j]))
-            string = str(spielfeldliste[i][j])
-            farbe= spielfeldliste[i][j]
+            string = spielfeldliste[i][j]
             if l_grösse == 3 or l_grösse == 1:
-                print("|" + farben[farbe] + ((x-l_grösse)//2)*" " + string + ((x-l_grösse)//2)*" " + reset, end="")
+                print("|" + farben[string] + ((x-l_grösse)//2)*" " + str(string) + ((x-l_grösse)//2)*" " + reset, end="")
             else:
-                print("|" + farben[farbe] + 2*" " + string + " " + reset , end="")
+                print("|" + farben[string] + 2*" " + str(string) + " " + reset , end="")
         print("|")
     print(4*" ", end="")
     for k in range (31):
