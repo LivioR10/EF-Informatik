@@ -1,5 +1,14 @@
 from random import randint 
-
+spielfeldliste = [
+    [],
+    [],
+    [],
+    [],
+    []  
+]
+def wert():
+    hoch = randint(1, 3)
+    spielfeldliste
 spielfeldliste = [
     [4, 2, 2, 2, 2],
     [4, 8, 8, 2, 4],
@@ -14,7 +23,7 @@ farben ={
     16: "\033[41m",
     32: "\033[46m",
     64: "\033[44m",
-    128: "\033[48;5;17m",
+    128: "\033[48;5;17m"
     }
 reset = "\033[0m"
 
