@@ -28,15 +28,18 @@ farben ={
     "   ": "\033[39m"
     }
 reset = "\033[0m"
+
 def zahlen_oben():
     print(4*" ", end="")
     for e in range(1, 6):
         print(3*" " + str(e) + 2*" ", end="")
     print()
+
 def querlinie():
     for k in range (31):
         print("━", end="")
-def liste_machen():
+
+def spielfeld_zeichnen():
     zahlen_oben()
     for i in range(5):
         print(4*" ",end="")
@@ -66,6 +69,6 @@ def play():
     while player_input:
         input_abfragen()
         auswerten(x_kor, y_kor)
-        liste_machen()
+        spielfeld_zeichnen()
         print()
 play()
