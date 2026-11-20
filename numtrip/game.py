@@ -28,16 +28,19 @@ farben ={
     "   ": "\033[39m"
     }
 reset = "\033[0m"
-
-def liste_machen():
+def zahlen_oben():
     print(4*" ", end="")
     for e in range(1, 6):
         print(3*" " + str(e) + 2*" ", end="")
     print()
+def querlinie():
+    for k in range (31):
+        print("━", end="")
+def liste_machen():
+    zahlen_oben()
     for i in range(5):
         print(4*" ",end="")
-        for k in range(31):
-            print("━", end="")
+        querlinie()
         print()
         print(str(i+1) + 3*" ", end="")
         for j in range(5):
@@ -50,18 +53,19 @@ def liste_machen():
                 print("|" + farben[string] + 2*" " + str(string) + " " + reset , end="")
         print("|")
     print(4*" ", end="")
-    for k in range (31):
-        print("━", end="")
+    querlinie()
+
 def auswerten(x_kor, y_kor):
-    spielfeldliste[y_kor][x_kor] = "   "
+    spielfeldliste[y_kor-1][x_kor-1] = "   "
 def input_abfragen():
     global x_kor, y_kor
-    x_kor = int(input("Gib die x-Koordinate ein (0-4)"))
-    y_kor = int(input("Gib die y-Koordinate ein (0-4)"))
+    x_kor = int(input("Gib die x-Koordinate ein (1-5)"))
+    y_kor = int(input("Gib die y-Koordinate ein (1-5)"))
 def play():
     global x_kor, y_kor
     while player_input:
         input_abfragen()
         auswerten(x_kor, y_kor)
         liste_machen()
+        print()
 play()
