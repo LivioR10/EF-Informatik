@@ -1,5 +1,8 @@
 from random import randint 
 player_input = True
+Buchstaben = [
+    "A", "B", "C", "D", "E"
+]
 spielfeldliste = [
     [],
     [],
@@ -58,17 +61,18 @@ def spielfeld_zeichnen():
     print(4*" ", end="")
     querlinie()
 
-def auswerten(x_kor, y_kor):
-    spielfeldliste[y_kor-1][x_kor-1] = "   "
+def auswerten(Koordinate):
+    y_kor = int(Koordinate[1])
+    x_kor = int(Buchstaben.index(Koordinate[0]))
+    spielfeldliste[y_kor-1][x_kor] = "   "
 def input_abfragen():
-    global x_kor, y_kor
-    x_kor = int(input("Gib die x-Koordinate ein (1-5)"))
-    y_kor = int(input("Gib die y-Koordinate ein (1-5)"))
+    global Koordinate
+    Koordinate = input("Gib die Korrdinaten ein. Z.B: A1")
 def play():
-    global x_kor, y_kor
+    global Koordinate
     while player_input:
         input_abfragen()
-        auswerten(x_kor, y_kor)
+        auswerten(Koordinate)
         spielfeld_zeichnen()
         print()
 play()
