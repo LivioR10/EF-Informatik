@@ -32,10 +32,10 @@ farben ={
     }
 reset = "\033[0m"
 
-def zahlen_oben():
+def zahlen_unten():
     print(4*" ", end="")
-    for e in range(1, 6):
-        print(3*" " + str(e) + 2*" ", end="")
+    for e in range(5):
+        print(3*" " + str(Buchstaben[e]) + 2*" ", end="")
     print()
 
 def querlinie():
@@ -43,7 +43,6 @@ def querlinie():
         print("━", end="")
 
 def spielfeld_zeichnen():
-    zahlen_oben()
     for i in range(5):
         print(4*" ",end="")
         querlinie()
@@ -60,6 +59,8 @@ def spielfeld_zeichnen():
         print("|")
     print(4*" ", end="")
     querlinie()
+    print()
+    zahlen_unten()
 
 def auswerten(Koordinate):
     y_kor = int(Koordinate[1])
@@ -67,7 +68,7 @@ def auswerten(Koordinate):
     spielfeldliste[y_kor-1][x_kor] = "   "
 def input_abfragen():
     global Koordinate
-    Koordinate = input("Gib die Korrdinaten ein. Z.B: A1")
+    Koordinate = input("Gib die Korrdinaten ein.(Z.B: A1) \nKoordinate: ")
 def play():
     global Koordinate
     while player_input:
