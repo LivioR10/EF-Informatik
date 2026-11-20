@@ -54,11 +54,14 @@ def liste_machen():
         print("━", end="")
 def auswerten(x_kor, y_kor):
     spielfeldliste[y_kor][x_kor] = "   "
-    liste_machen()
-
 def input_abfragen():
+    global x_kor, y_kor
+    x_kor = int(input("Gib die x-Koordinate ein (0-4)"))
+    y_kor = int(input("Gib die y-Koordinate ein (0-4)"))
+def play():
+    global x_kor, y_kor
     while player_input:
-        x_kor = int(input("Gib die x-Koordinate ein (1-5)"))
-        y_kor = int(input("Gib die y-Koordinate ein (1-5)"))
+        input_abfragen()
         auswerten(x_kor, y_kor)
-input_abfragen()
+        liste_machen()
+play()
