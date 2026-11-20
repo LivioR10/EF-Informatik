@@ -1,4 +1,5 @@
 from random import randint 
+player_input = True
 spielfeldliste = [
     [],
     [],
@@ -14,7 +15,7 @@ spielfeldliste = [
     [4, 8, 8, 2, 4],
     [2, 2, 8, 8, 8],
     [32, 8, 2, 64, 2],
-    [4, 128, 16, 8, 4]
+    [4, 8, 16, 8, 4]
 ]
 farben ={
     2: "\033[42m",
@@ -23,7 +24,8 @@ farben ={
     16: "\033[41m",
     32: "\033[46m",
     64: "\033[44m",
-    128: "\033[48;5;17m"
+    128: "\033[48;5;17m",
+    "   ": "\033[39m"
     }
 reset = "\033[0m"
 
@@ -50,5 +52,13 @@ def liste_machen():
     print(4*" ", end="")
     for k in range (31):
         print("━", end="")
+def auswerten(x_kor, y_kor):
+    spielfeldliste[y_kor][x_kor] = "   "
+    liste_machen()
 
-liste_machen()
+def input_abfragen():
+    while player_input:
+        x_kor = int(input("Gib die x-Koordinate ein (1-5)"))
+        y_kor = int(input("Gib die y-Koordinate ein (1-5)"))
+        auswerten(x_kor, y_kor)
+input_abfragen()
