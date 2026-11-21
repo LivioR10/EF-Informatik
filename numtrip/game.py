@@ -25,6 +25,12 @@ def spielfeldgeneration():
             hoch = randint(1, 3)
             spielfeldliste[-1].append(2**hoch)
     print(spielfeldliste)
+
+def Exit(Koordinate):
+    if Koordinate == "Exit" or Koordinate == "Stopp":
+        return True
+    return False
+
 def zahlen_unten():
     print(4*" ", end="")
     for e in range(5):
@@ -67,6 +73,8 @@ def play():
     spielfeldgeneration()
     while player_input:
         input_abfragen()
+        if Exit(Koordinate):
+            break
         auswerten(Koordinate)
         spielfeld_zeichnen()
         print()
