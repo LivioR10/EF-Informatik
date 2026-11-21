@@ -3,22 +3,8 @@ player_input = True
 Buchstaben = [
     "A", "B", "C", "D", "E"
 ]
+
 spielfeldliste = [
-    [],
-    [],
-    [],
-    [],
-    []  
-]
-def wert():
-    hoch = randint(1, 3)
-    spielfeldliste
-spielfeldliste = [
-    [4, 2, 2, 2, 2],
-    [4, 8, 8, 2, 4],
-    [2, 2, 8, 8, 8],
-    [32, 8, 2, 64, 2],
-    [4, 8, 16, 8, 4]
 ]
 farben ={
     2: "\033[42m",
@@ -32,6 +18,13 @@ farben ={
     }
 reset = "\033[0m"
 
+def spielfeldgeneration():
+    for j in range(5):
+        spielfeldliste.append([])
+        for i in range(5):
+            hoch = randint(1, 3)
+            spielfeldliste[-1].append(2**hoch)
+    print(spielfeldliste)
 def zahlen_unten():
     print(4*" ", end="")
     for e in range(5):
@@ -71,6 +64,7 @@ def input_abfragen():
     Koordinate = input("Gib die Korrdinaten ein.(Z.B: A1) \nKoordinate: ")
 def play():
     global Koordinate
+    spielfeldgeneration()
     while player_input:
         input_abfragen()
         auswerten(Koordinate)
