@@ -25,7 +25,6 @@ def spielfeldgeneration():
         for i in range(5):
             hoch = randint(1, 3)
             spielfeldliste[-1].append(2**hoch)
-    print(spielfeldliste)
 
 def Exit(Koordinate):
     if Koordinate == "Exit" or Koordinate == "Stopp":
@@ -72,6 +71,7 @@ def input_abfragen():
 def play():
     global Koordinate
     spielfeldgeneration()
+    spielfeld_zeichnen()
     while player_input:
         input_abfragen()
         if Exit(Koordinate):
