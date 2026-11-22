@@ -1,11 +1,12 @@
 from random import randint 
 player_input = True
+
 Buchstaben = [
     "A", "B", "C", "D", "E"
 ]
 
-spielfeldliste = [
-]
+spielfeldliste = []
+
 farben ={
     2: "\033[42m",
     4: "\033[105m",
