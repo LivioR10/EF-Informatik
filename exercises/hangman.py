@@ -1,3 +1,4 @@
+import sys
 gesucht = 'test'
 
 def reset():
@@ -17,17 +18,22 @@ def show():
     print('')
     # Zählt wie viele male man schon geraten hat. Und welche buchstaben man schon erraten hat. 
 def is_valid(inp):
+    if inp == "Exit":
+        stopp()
     if inp.isalpha and len(inp) == 1 and inp not in doppelcheck:
         return True
     return False
     # Ob der input valid ist.
+
+def stopp():
+    sys.exit()
 
 def eingabe():
     global valid_inp
     buchstabe = input('Buchstabe? ')
     while not is_valid(buchstabe):
         print("Sorry nimm bitte etwas anderes!")
-        buchstabe = input('Neuer Buchstabe?')
+        buchstabe = input('Neuer Buchstabe? ')
     valid_inp = buchstabe.lower()
     doppelcheck.append(valid_inp)
     # Welcher Buchstabe und dann, wenn er valid ist gibt es den Buchstaben zurück in kleinformat.
@@ -59,6 +65,14 @@ def gewonnen():
                 return True
             else:
                 None
+
+def play_again():
+    abbruch = input("Möchtest du es noch einmal versuchen? (y für ja und n für nein) falls nein bitte Exit eingeben\n")
+    if abbruch == "y":
+        play()
+    else:
+        None
+
 def play():
     reset()
     eingabe()
@@ -68,4 +82,5 @@ def play():
         eingabe()
         auswerten(valid_inp)
         show()
+    play_again()
 play()
