@@ -1,6 +1,6 @@
 import sys
 import zufallsworte as zufall
-
+alphabet = list("abcdefghijklmnopqrstuvwxyz")
 HANGMANS_RAW = r''' 18 Zeichen ergeben ein Bild...
                                          __________        __________        __________        __________        __________        __________        __________        __________        __________     
                        |                 |                 |/                |/        |       |/        |       |/        |       |/        |       |/        |       |/        |       |/        |    
@@ -21,7 +21,6 @@ def zufallswort_gen():
     return(gesucht)
 
 
-
 def get_hangman(nr):
     return HANGMANS[nr]
 
@@ -34,6 +33,7 @@ def reset():
     doppelcheck = []
 
 def show():
+    verwendet = gefunden + falsch_geraten
     print('Falsche Buchstaben:', falsch_geraten)
     print(10-k, "versuche überig")
     for buchstabe in gesucht:
@@ -41,7 +41,9 @@ def show():
             print(buchstabe, end=' ')
         else:
             print('_', end=' ')
+    rest = [buchstabe for buchstabe in alphabet if buchstabe not in verwendet]
     print('')
+    print(rest)
     # Zählt wie viele male man schon geraten hat. Und welche buchstaben man schon erraten hat. 
 
 def is_valid(inp):
@@ -104,6 +106,7 @@ def play_again():
 def play():
     reset()
     zufallswort_gen()
+    print(len(gesucht)*"_", len(gesucht))
     eingabe()
     auswerten(valid_inp)
     show()

@@ -23,7 +23,7 @@ def spielfeldgeneration():
     for j in range(5):
         spielfeldliste.append([])
         for i in range(5):
-            hoch = randint(1, 3)
+            hoch = randint(1, 4)
             spielfeldliste[-1].append(2**hoch)
 
 def Exit(Koordinate):
@@ -64,7 +64,7 @@ def spielfeld_zeichnen():
 def auswerten(Koordinate):
     y_kor = int(Koordinate[1])
     x_kor = int(Buchstaben.index(Koordinate[0]))
-    spielfeldliste[y_kor-1][x_kor] = "   "
+    spielfeldliste[y_kor-1][x_kor] = 3*" "
 def input_abfragen():
     global Koordinate
     Koordinate = input("Gib die Korrdinaten ein.(Z.B: A1) \nKoordinate: ")
