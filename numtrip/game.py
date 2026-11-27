@@ -1,6 +1,6 @@
 from random import randint 
 player_input = True
-
+prüfung = True
 Buchstaben = [
     "A", "B", "C", "D", "E"
 ]
@@ -23,7 +23,7 @@ def spielfeldgeneration():
     for j in range(5):
         spielfeldliste.append([])
         for i in range(5):
-            hoch = randint(1, 4)
+            hoch = randint(1, 3)
             spielfeldliste[-1].append(2**hoch)
 
 def Exit(Koordinate):
@@ -61,15 +61,50 @@ def spielfeld_zeichnen():
     print()
     zahlen_unten()
 
+def erneute_frage():
+    while True:
+        Erneute_frage = input("Wolltest du " + Koordinate[0:2] + " eingeben?. Bitte ja oder nein eingeben\n")
+        if Erneute_frage == "ja":
+            return False
+        elif Erneute_frage == "nein":
+            raise ValueError("Zu lange Eingabe")
+            return False
+        else:
+            return True
+            print("Bitte gibt eine neue Antowrt ein")
+
 def auswerten(Koordinate):
-    y_kor = int(Koordinate[1])
-    gross = Koordinate[0].upper()
-    x_kor = (int(Buchstaben.index(gross)))
-    spielfeldliste[y_kor-1][x_kor] = 3*" "
+    while prüfung:
+        try:
+            unbearbeitet_y = int(Koordinate[1])
+            gross = Koordinate[0].upper()
+            unbearbetiet_x = int(Buchstaben.index(gross))
+            if len(Koordinate) > 2:
+                erneute_frage()
+            x_kor = unbearbetiet_x
+            y_kor = unbearbeitet_y
+            spielfeldliste[y_kor-1][x_kor] = 3*" "
+            if y_kor > 5:
+                raise ValueError("zu grosse y_kor")
+            return False
+        except:
+            rot = farben[16]
+            if not Koordinate[0].isalpha():
+                print(rot + "Der erste Teil ist kein Buchstabe" + reset)
+            elif not Koordinate[1].isnumeric():
+                print(rot + "Der zweite Teil ist keine Zahl" + reset)
+            elif Koordinate[0] > "5":
+                print(rot + "Sorry dieser Punkt befindet sich nicht im Spielfeld" + reset)
+            elif len(Koordinate) > 2:
+                print(rot + "Eine zu lange Koordinate. Bitte nur zwei Zeichen verwenden" + reset)
+            print(rot +"Bitte im Format (Buchstabe bis E, Zahl bis 5)" + reset)
+            return True
+
 
 def input_abfragen():
     global Koordinate
     Koordinate = input("Gib die Korrdinaten ein.(Z.B: A1) \nKoordinate: ")
+
 def play():
     global Koordinate
     spielfeldgeneration()
