@@ -63,8 +63,10 @@ def spielfeld_zeichnen():
 
 def auswerten(Koordinate):
     y_kor = int(Koordinate[1])
-    x_kor = int(Buchstaben.index(Koordinate[0]))
+    gross = Koordinate[0].upper()
+    x_kor = (int(Buchstaben.index(gross)))
     spielfeldliste[y_kor-1][x_kor] = 3*" "
+
 def input_abfragen():
     global Koordinate
     Koordinate = input("Gib die Korrdinaten ein.(Z.B: A1) \nKoordinate: ")
