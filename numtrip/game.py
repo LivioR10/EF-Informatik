@@ -5,6 +5,7 @@ kein_Alpha = 0
 kein_Zahl = 0
 zu_gross = 0
 zu_lang = 0
+zu_klein = 0
 
 Buchstaben = [
     "A", "B", "C", "D", "E"
@@ -47,7 +48,7 @@ def querlinie():
         print("━", end="")
 
 def fehlermeldungen():
-    global kein_Alpha, kein_Zahl, zu_gross, zu_lang
+    global kein_Alpha, kein_Zahl, zu_gross, zu_lang, zu_klein
     rot = farben[16]
     if kein_Zahl == 1:
         print(rot + "Der zweite Teil ist keine Zahl" + reset)
@@ -57,10 +58,13 @@ def fehlermeldungen():
         print(rot + "Sorry dieser Punkt befindet sich nicht im Spielfeld" + reset)
     if zu_lang == 1:
         print(rot + "Eine zu lange Koordinate. Bitte nur zwei Zeichen verwenden" + reset)
+    if zu_klein == 1:
+        print(rot + "Die Koordinate muss mindestens zwei Zeichen haben" + reset)
     kein_Alpha = 0
     kein_Zahl = 0
     zu_gross = 0
     zu_lang = 0
+    zu_klein = 0
 
 def spielfeld_zeichnen():
     for i in range(5):
@@ -95,7 +99,7 @@ def erneute_frage():
             print("Bitte gibt eine neue Antowrt ein")
 
 def auswerten(Koordinate):
-    global kein_Alpha, kein_Zahl, zu_gross, zu_lang
+    global kein_Alpha, kein_Zahl, zu_gross, zu_lang, zu_klein
     while prüfung:
         try:
             unbearbeitet_y = int(Koordinate[1])
@@ -110,16 +114,18 @@ def auswerten(Koordinate):
                 raise ValueError("zu grosse y_kor")
             return False
         except:
-            rot = farben[16]
-            if not Koordinate[0].isalpha():
-                kein_Alpha = 1
-            if not Koordinate[1].isnumeric():
-                kein_Zahl = 1
-            if Koordinate[1] > "5":
-                zu_gross = 1
-            if len(Koordinate) > 2:
-                zu_lang = 1
-            print(rot +"Bitte im Format (Buchstabe bis E, Zahl bis 5)" + reset)
+            if len(Koordinate) > 0:
+                if not Koordinate[0].isalpha():
+                    kein_Alpha = 1
+                if len(Koordinate) <= 1:
+                    zu_klein = 1
+                if not len(Koordinate) == 1:
+                    if not Koordinate[1].isnumeric():
+                        kein_Zahl = 1
+                    if Koordinate[1] > "5":
+                        zu_gross = 1
+                if len(Koordinate) > 2:
+                    zu_lang = 1
             return False
 
 
