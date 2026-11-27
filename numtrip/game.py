@@ -1,6 +1,11 @@
 from random import randint 
 player_input = True
 prüfung = True
+kein_Alpha = 0
+kein_Zahl = 0
+zu_gross = 0
+zu_lang = 0
+
 Buchstaben = [
     "A", "B", "C", "D", "E"
 ]
@@ -41,6 +46,22 @@ def querlinie():
     for k in range (31):
         print("━", end="")
 
+def fehlermeldungen():
+    global kein_Alpha, kein_Zahl, zu_gross, zu_lang
+    rot = farben[16]
+    if kein_Zahl == 1:
+        print(rot + "Der zweite Teil ist keine Zahl" + reset)
+    if kein_Alpha == 1:
+        print(rot + "Der erste Teil ist kein Buchstabe" + reset)
+    if zu_gross == 1:
+        print(rot + "Sorry dieser Punkt befindet sich nicht im Spielfeld" + reset)
+    if zu_lang == 1:
+        print(rot + "Eine zu lange Koordinate. Bitte nur zwei Zeichen verwenden" + reset)
+    kein_Alpha = 0
+    kein_Zahl = 0
+    zu_gross = 0
+    zu_lang = 0
+
 def spielfeld_zeichnen():
     for i in range(5):
         print(4*" ",end="")
@@ -74,6 +95,7 @@ def erneute_frage():
             print("Bitte gibt eine neue Antowrt ein")
 
 def auswerten(Koordinate):
+    global kein_Alpha, kein_Zahl, zu_gross, zu_lang
     while prüfung:
         try:
             unbearbeitet_y = int(Koordinate[1])
@@ -90,15 +112,15 @@ def auswerten(Koordinate):
         except:
             rot = farben[16]
             if not Koordinate[0].isalpha():
-                print(rot + "Der erste Teil ist kein Buchstabe" + reset)
-            elif not Koordinate[1].isnumeric():
-                print(rot + "Der zweite Teil ist keine Zahl" + reset)
-            elif Koordinate[0] > "5":
-                print(rot + "Sorry dieser Punkt befindet sich nicht im Spielfeld" + reset)
-            elif len(Koordinate) > 2:
-                print(rot + "Eine zu lange Koordinate. Bitte nur zwei Zeichen verwenden" + reset)
+                kein_Alpha = 1
+            if not Koordinate[1].isnumeric():
+                kein_Zahl = 1
+            if Koordinate[1] > "5":
+                zu_gross = 1
+            if len(Koordinate) > 2:
+                zu_lang = 1
             print(rot +"Bitte im Format (Buchstabe bis E, Zahl bis 5)" + reset)
-            return True
+            return False
 
 
 def input_abfragen():
@@ -116,4 +138,5 @@ def play():
         auswerten(Koordinate)
         spielfeld_zeichnen()
         print()
+        fehlermeldungen()
 play()
